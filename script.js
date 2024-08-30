@@ -1,10 +1,10 @@
 function calculateResult() {
     const numerator = 1000000000; // Fixed at 1 billion
-    const rate = parseFloat(document.getElementById('rate').value);
+    const rateInput = parseFloat(document.getElementById('rate').value);
     let petRap = document.getElementById('petrap').value.trim();
     let resultElement = document.getElementById('result');
 
-    if (isNaN(rate) || rate <= 0) {
+    if (isNaN(rateInput) || rateInput <= 0) {
         resultElement.innerText = "Please enter a valid rate greater than 0.";
         return;
     }
@@ -14,10 +14,18 @@ function calculateResult() {
         return;
     }
 
+    // Convert rateInput to a decimal rate
+    let rate;
+    if (rateInput >= 1) {
+        rate = rateInput / 1000; // Treats 400 as 0.4
+    } else {
+        rate = rateInput; // Assumes it's already in decimal format (e.g., 0.4)
+    }
+
     // Convert petRap based on suffix
     petRap = petRap.toLowerCase();
-
     let petRapValue;
+
     if (petRap.endsWith('m')) {
         petRapValue = parseFloat(petRap.slice(0, -1)) * 1000000; // 'm' for millions
     } else if (petRap.endsWith('k')) {
