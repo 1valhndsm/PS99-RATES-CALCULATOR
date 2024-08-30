@@ -41,6 +41,6 @@ function calculateResult() {
 
     // Display the results
     resultElement.innerHTML = `
-        Final Result: ${finalResult.toFixed(2)}
+        Final Result: ₱${finalResult.toFixed(2)}
     `;
 }
